@@ -18,7 +18,6 @@ export class DatabaseService implements TypeOrmOptionsFactory {
       migrations: [__dirname + '/../database/migrations/*.{ts,js}'],
       synchronize: false,
       dropSchema: false,
-      timezone: '+09.00',
     };
   }
 }

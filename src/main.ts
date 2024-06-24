@@ -5,9 +5,9 @@ import { BadRequestException, ValidationPipe } from '@nestjs/common';
 import { HttpExceptionFilter } from './httpException.filter';
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
   // TypeORM Transactional 적용
   initializeTransactionalContext({ storageDriver: StorageDriver.AUTO });
+  const app = await NestFactory.create(AppModule);
   // Class-Validator로 인해 발생한 에러 반환하는 pipe
   app.useGlobalPipes(
     new ValidationPipe({

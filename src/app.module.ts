@@ -8,6 +8,7 @@ import { dataSourceOptions } from './database/database.config';
 import { DatabaseService } from './database/database.service';
 import { DataSource } from 'typeorm';
 import { addTransactionalDataSource } from 'typeorm-transactional';
+import { RedisModule } from '@nestjs-modules/ioredis';
 
 @Module({
   imports: [
@@ -19,6 +20,12 @@ import { addTransactionalDataSource } from 'typeorm-transactional';
         if (!options) throw new Error('Invalid options passed');
         return addTransactionalDataSource(new DataSource(dataSourceOptions));
       },
+    }),
+    RedisModule.forRootAsync({
+      useFactory: () => ({
+        type: 'single',
+        url: 'redis://localhost:6379',
+      }),
     }),
     DatabaseModule,
     LecturesModule,

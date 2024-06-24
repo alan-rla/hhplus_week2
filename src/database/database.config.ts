@@ -13,7 +13,6 @@ export const dataSourceOptions: DataSourceOptions = {
   migrations: [__dirname + '/../database/migrations/*.{ts,js}'],
   synchronize: true, // 개발용 로컬 DB이므로 true
   dropSchema: false, // db에 테이블이 있다면 전부 삭제
-  timezone: '+09.00',
 };
 
 const dataSource = new DataSource(dataSourceOptions);
