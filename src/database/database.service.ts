@@ -5,7 +5,7 @@ import { TypeOrmModuleOptions, TypeOrmOptionsFactory } from '@nestjs/typeorm';
 export class DatabaseService implements TypeOrmOptionsFactory {
   createTypeOrmOptions(): TypeOrmModuleOptions | Promise<TypeOrmModuleOptions> {
     return {
-      type: 'mysql',
+      type: 'mariadb',
       host: 'localhost',
       port: 3306,
       username: 'root',
@@ -14,7 +14,7 @@ export class DatabaseService implements TypeOrmOptionsFactory {
       logging: true,
       charset: 'utf8_general_ci',
       keepConnectionAlive: true,
-      entities: [__dirname + '/../entities/*.{ts,js}'],
+      entities: [__dirname + '/../entities/*.entity.{ts,js}'],
       migrations: [__dirname + '/../database/migrations/*.{ts,js}'],
       synchronize: false,
       dropSchema: false,
