@@ -7,6 +7,7 @@ export const dataSourceOptions: DataSourceOptions = {
   username: 'root',
   password: '1234',
   database: 'hhplus_week2',
+  logging: true,
   charset: 'utf8_general_ci', // 이모티콘 사용 가능하게 해줌
   entities: [__dirname + '/../entities/*.{ts,js}'],
   migrations: [__dirname + '/../database/migrations/*.{ts,js}'],
