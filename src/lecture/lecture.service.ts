@@ -28,11 +28,6 @@ export class LectureService {
   async isApplicationOpen(date: number): Promise<boolean> {
     // 오픈 날짜 2024-06-29 오전 9시
     const openDate = new Date(2024, 5, 29, 0, 0, 0).getTime();
-    console.log('input');
-    console.log(date);
-    console.log('openDate');
-    console.log(openDate);
-
     if (openDate > date) throw new HttpException('LECTURE_NOT_OPEN', 500);
     else return true;
   }
