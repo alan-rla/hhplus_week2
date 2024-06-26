@@ -20,3 +20,5 @@ export class Lecture {
   @OneToMany(() => LectureUser, (lectureUser) => lectureUser.lecture)
   lectureUser: LectureUser[];
 }
+
+export type LectureModel = Pick<Lecture, 'id' | 'name'>;

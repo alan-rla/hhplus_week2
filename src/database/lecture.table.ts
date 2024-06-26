@@ -1,8 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Lecture } from 'src/entities/Lecture.entity';
-
-import { InsertResult, Repository } from 'typeorm';
+import { Lecture, LectureModel } from 'src/entities/Lecture.entity';
+import { Repository } from 'typeorm';
 import { Propagation, Transactional } from 'typeorm-transactional';
 
 @Injectable()
@@ -13,7 +12,7 @@ export class LectureTable {
   ) {}
 
   @Transactional({ propagation: Propagation.MANDATORY })
-  async insert(lecture: Lecture): Promise<InsertResult> {
+  async insert(lecture: Lecture): Promise<LectureModel> {
     const insert = await this.lectureRepository
       .createQueryBuilder()
       .insert()
@@ -26,6 +25,14 @@ export class LectureTable {
 
   async selectAll(): Promise<Lecture[]> {
     const lecture = await this.lectureRepository.createQueryBuilder('lecture').getMany();
+    return lecture;
+  }
+
+  async selectById(lectureId: number): Promise<Lecture> {
+    const lecture = await this.lectureRepository
+      .createQueryBuilder('lecture')
+      .where('lecture.id = :lectureId', { lectureId })
+      .getOne();
     return lecture;
   }
 }

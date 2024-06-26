@@ -10,23 +10,26 @@ export class LectureUser {
   id: number;
 
   @Expose()
-  @Column('int', { name: 'name' })
+  @Column('int', { name: 'userId' })
   @Type(() => Number)
   @IsInt()
   @IsPositive()
   @IsNotEmpty()
   userId: number;
 
-  @CreateDateColumn()
-  createdAt: Date;
+  @CreateDateColumn({ type: 'timestamp' })
+  createdAt: number;
 
   @ManyToOne(() => Lecture, (lecture) => lecture.lectureUser)
   @JoinColumn([{ name: 'lectureId', referencedColumnName: 'id' }])
   lecture: Lecture;
   @Expose()
+  @Column('int', { name: 'lectureId' })
   @Type(() => Number)
   @IsInt()
   @IsPositive()
   @IsNotEmpty()
   lectureId: number;
 }
+
+export type LectureUserModel = Pick<LectureUser, 'id' | 'userId' | 'lectureId' | 'createdAt'>;
