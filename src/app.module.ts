@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { DatabaseModule } from './database/database.module';
-import { LecturesModule } from './lectures/lectures.module';
+import { LectureModule } from './lecture/lecture.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { dataSourceOptions } from './database/database.config';
 import { DatabaseService } from './database/database.service';
@@ -28,7 +28,7 @@ import { RedisModule } from '@nestjs-modules/ioredis';
       }),
     }),
     DatabaseModule,
-    LecturesModule,
+    LectureModule,
   ],
   controllers: [AppController],
   providers: [AppService],
