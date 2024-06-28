@@ -31,11 +31,12 @@ export class LectureUserTable {
     return lectureUser;
   }
 
-  async selectAllUsersByLectureId(lectureId: number): Promise<LectureUser[]> {
+  async selectByLectureIdUserId(lectureId: number, userId: number): Promise<LectureUser> {
     const lectureUser = await this.lectureUserRepository
       .createQueryBuilder('lectureUser')
       .where('lectureUser.lectureId = :lectureId', { lectureId })
-      .getMany();
+      .andWhere('lectureUser.userId = :userId', { userId })
+      .getOne();
     return lectureUser;
   }
 }

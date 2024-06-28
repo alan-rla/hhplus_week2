@@ -23,14 +23,28 @@ export class LectureTable {
     return insert.raw[0];
   }
 
+  @Transactional({ propagation: Propagation.MANDATORY })
+  async update(lectureId: number, lecture: Lecture): Promise<LectureModel> {
+    const update = await this.lectureRepository
+      .createQueryBuilder()
+      .update(Lecture)
+      .set(lecture)
+      .where('id = :lectureId', { lectureId })
+      .execute();
+
+    return update.raw[0];
+  }
+
   async selectAll(): Promise<Lecture[]> {
     const lecture = await this.lectureRepository.createQueryBuilder('lecture').getMany();
     return lecture;
   }
 
+  // @Transactional({ propagation: Propagation.MANDATORY })
   async selectById(lectureId: number): Promise<Lecture> {
     const lecture = await this.lectureRepository
       .createQueryBuilder('lecture')
+      .setLock('pessimistic_write')
       .where('lecture.id = :lectureId', { lectureId })
       .getOne();
     return lecture;

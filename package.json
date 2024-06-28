@@ -24,7 +24,7 @@
     "schema:drop": "ts-node ./node_modules/typeorm/cli.js schema:drop -d ./src/database/database.config.ts",
     "schema:sync": "ts-node ./node_modules/typeorm/cli.js schema:sync -d ./src/database/database.config.ts",
     "migrate:create": "yarn typeorm migration:create ./src/database/migrations/hhplus_week2",
-    "migrate:generate": "yarn typeorm migration:generate ./src/database/migrations -d ./src/database/database.config.ts",
+    "migrate:generate": "yarn typeorm migration:generate ./src/database/migrations/hhplus_week2 -d ./src/database/database.config.ts",
     "migrate:show": "yarn typeorm migration:show -- -d ./src/database/database.config.ts",
     "migrate:run": "yarn typeorm migration:run -- -d ./src/database/database.config.ts",
     "migrate:revert": "yarn typeorm migration:revert -- -d ./src/database/database.config.ts"

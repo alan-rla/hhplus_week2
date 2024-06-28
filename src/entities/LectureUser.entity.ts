@@ -17,6 +17,7 @@ export class LectureUser {
   @IsNotEmpty()
   userId: number;
 
+  @Expose()
   @CreateDateColumn({ type: 'timestamp' })
   createdAt: number;
 
